@@ -61,14 +61,13 @@ namespace MazeWinForm.Maze
             return maze;
         }
 
-        public static int[,] GenerateMazeGame()
+        public static int[,] GenerateMazeGame(int height_in_cells, int width_in_cells, Form1 form)
         {
             // Iterative implementation (with stack)
             //https://en.wikipedia.org/wiki/Maze_generation_algorithm
 
             Reset(); //Clear list and stack
-
-            int[,] maze = NewMazeWithCells();
+            int[,] maze = NewMazeWithCells(height_in_cells, width_in_cells);
 
 
             // Choose the initial cell, mark it as visited and push it to the stack
@@ -93,7 +92,6 @@ namespace MazeWinForm.Maze
                     maze[(currentCell.Item1 + chosenCell.Item1) / 2, (currentCell.Item2 + chosenCell.Item2) / 2] = 0; //remove the wall between the current cell and the chosen cell
 
                     //draw new sections
-                    Form1 form = new Form1();
                     form.DrawSection(currentCell);
                     form.DrawSection(chosenCell);
                     form.DrawSection(Tuple.Create((currentCell.Item1 + chosenCell.Item1) / 2, (currentCell.Item2 + chosenCell.Item2) / 2));

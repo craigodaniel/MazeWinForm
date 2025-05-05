@@ -30,6 +30,8 @@
         {
             button1 = new Button();
             btn_Reset_Maze = new Button();
+            btn_New_Game = new Button();
+            btn_Solve_Maze = new Button();
             SuspendLayout();
             // 
             // button1
@@ -52,11 +54,33 @@
             btn_Reset_Maze.UseVisualStyleBackColor = true;
             btn_Reset_Maze.Click += btn_Reset_Maze_Click;
             // 
+            // btn_New_Game
+            // 
+            btn_New_Game.Location = new Point(652, 136);
+            btn_New_Game.Name = "btn_New_Game";
+            btn_New_Game.Size = new Size(118, 29);
+            btn_New_Game.TabIndex = 3;
+            btn_New_Game.Text = "New Game";
+            btn_New_Game.UseVisualStyleBackColor = true;
+            btn_New_Game.Click += btn_New_Game_Click;
+            // 
+            // btn_Solve_Maze
+            // 
+            btn_Solve_Maze.Location = new Point(652, 101);
+            btn_Solve_Maze.Name = "btn_Solve_Maze";
+            btn_Solve_Maze.Size = new Size(118, 29);
+            btn_Solve_Maze.TabIndex = 4;
+            btn_Solve_Maze.Text = "Solve Maze";
+            btn_Solve_Maze.UseVisualStyleBackColor = true;
+            btn_Solve_Maze.Click += btn_Solve_Maze_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(782, 753);
+            Controls.Add(btn_Solve_Maze);
+            Controls.Add(btn_New_Game);
             Controls.Add(btn_Reset_Maze);
             Controls.Add(button1);
             Name = "Form1";
@@ -68,5 +92,7 @@
 
         private Button button1;
         private Button btn_Reset_Maze;
+        private Button btn_New_Game;
+        private Button btn_Solve_Maze;
     }
 }

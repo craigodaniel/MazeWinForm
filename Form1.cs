@@ -1,3 +1,4 @@
+using MazeWinForm.Maze;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -64,26 +65,48 @@ namespace MazeWinForm
                 label.Refresh();
                 //Thread.Sleep(1);
             }
-            
+        }
 
+        public void DrawPosition(Coordinate cell, Color bgColor)
+        {
+            int skipCnt = 0;
+            foreach (Control c in this.Controls)
+            {
+                if (c.GetType() != typeof(Label))
+                {
+                    skipCnt++;
+                }
+            }
+            int width = 3 + 2 * (width_in_cells - 1); // 3+2(n-1)
+            int index = (cell.Y) + ((cell.X) * width) + skipCnt;
 
+            if (index < this.Controls.Count)
+            {
+                Console.WriteLine(index.ToString() + " " + cell.ToString());
+                Control label = this.Controls[index];
+                label.BackColor = bgColor;
+                label.Refresh();
+                //Thread.Sleep(1);
+            }
         }
 
         public void ResetMaze()
         {
             foreach (Control cell in this.Controls)
             {
-                if(cell.GetType() == typeof(Label))
+                if (cell.GetType() == typeof(Label))
                 {
                     cell.BackColor = Color.Black;
                 }
-                
+
             }
+            this.Refresh();
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
+            ResetMaze();
             Maze.MazeGenerator.GenerateMaze(height_in_cells, width_in_cells, this);
         }
 
@@ -91,6 +114,18 @@ namespace MazeWinForm
         {
             ResetMaze();
             this.Refresh();
+        }
+
+        private void btn_New_Game_Click(object sender, EventArgs e)
+        {
+            ResetMaze();
+            GameController.NewGame(30, 30, this);
+        }
+
+        private void btn_Solve_Maze_Click(object sender, EventArgs e)
+        {
+            ResetMaze();
+            MazeSolver.WallFollower(30,30, this);
         }
     }
 }
